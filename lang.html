@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilingual Website (English & Yoruba)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    /* Hide Google’s default dropdown */
+    #google_translate_element {
+      display: none;
+    }
+
+    .lang-btn {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .lang-btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <!-- Our custom language buttons -->
+  <div>
+    <button class="lang-btn" onclick="translateLanguage('en')">English</button>
+    <button class="lang-btn" onclick="translateLanguage('yo')">Yoruba</button>
+  </div>
+
+  <h1>Welcome to our website</h1>
+  <p>We provide modern web solutions for your business.</p>
+
+  <!-- Hidden Google Translate Widget -->
+  <div id="google_translate_element"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: 'en',
+          includedLanguages: 'en,yo'
+        }, 
+        'google_translate_element'
+      );
+    }
+
+    // Custom function to trigger translation
+    function translateLanguage(lang) {
+      const selectField = document.querySelector("select.goog-te-combo");
+      if (selectField) {
+        selectField.value = lang;
+        selectField.dispatchEvent(new Event("change"));
+      }
+    }
+  </script>
+
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

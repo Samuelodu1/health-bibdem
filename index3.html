@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Say No To Drugs - National Health Fellows</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#007E4F',
+            secondary: '#F1F5F9',
+            accent: '#F9B233',
+            dark: '#1E293B',
+            light: '#FFFFFF',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans bg-light text-dark antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-white/95 backdrop-blur-md shadow-sm z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">NHF</div>
+        <span class="text-xl font-bold text-primary">National Health Fellows</span>
+      </div>
+      <div class="hidden md:flex space-x-8 font-medium">
+        <a href="#home" class="hover:text-primary">Home</a>
+        <a href="#about" class="hover:text-primary">About</a>
+        <a href="#myths" class="hover:text-primary">Myths</a>
+        <a href="#pledge" class="hover:text-primary">Pledge</a>
+        <a href="#events" class="hover:text-primary">Events</a>
+      </div>
+      <button class="hidden md:block bg-primary text-white px-5 py-2 rounded-lg hover:bg-green-700 transition">
+        Take Action
+      </button>
+      <button class="md:hidden text-dark">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="relative bg-gradient-to-r from-primary to-green-900 text-white pt-32 pb-24">
+    <div class="container mx-auto px-6 max-w-3xl">
+      <h1 class="text-5xl font-serif font-bold mb-6 leading-tight">
+        Say <span class="text-accent">No</span> To Drugs
+      </h1>
+      <p class="text-xl opacity-90 mb-10">
+        Building a resilient, drug-free Nigeria through awareness, education and youth empowerment.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button class="bg-accent text-dark font-semibold py-3 px-6 rounded-lg hover:bg-yellow-500 transition">
+          Take the Pledge
+        </button>
+        <button class="bg-white text-primary font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition">
+          Learn More
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
+      <div class="p-8 rounded-lg shadow-sm bg-secondary">
+        <div class="text-4xl font-bold text-primary">85%</div>
+        <p class="mt-2 text-gray-700">Nigerian youths aware of drug dangers</p>
+      </div>
+      <div class="p-8 rounded-lg shadow-sm bg-secondary">
+        <div class="text-4xl font-bold text-primary">14.3%</div>
+        <p class="mt-2 text-gray-700">Nigerians (15–64 yrs) engage in drug abuse</p>
+      </div>
+      <div class="p-8 rounded-lg shadow-sm bg-secondary">
+        <div class="text-4xl font-bold text-primary">10M+</div>
+        <p class="mt-2 text-gray-700">Need intervention for drug use disorders</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 bg-secondary">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold font-serif mb-4">About Our Campaign</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+        We are committed to creating a drug-free Nigeria through education, support, and community engagement.
+      </p>
+      <div class="grid md:grid-cols-2 gap-10 text-left">
+        <div class="p-8 bg-white rounded-lg shadow">
+          <i class="fas fa-bullseye text-primary text-3xl mb-4"></i>
+          <h3 class="text-2xl font-semibold mb-3">Our Mission</h3>
+          <p class="text-gray-700 mb-4">To empower Nigerian youths to reject drug abuse through campaigns, outreach and resources.</p>
+          <button class="text-primary font-semibold hover:underline">Read Full Mission →</button>
+        </div>
+        <div class="p-8 bg-white rounded-lg shadow">
+          <i class="fas fa-eye text-primary text-3xl mb-4"></i>
+          <h3 class="text-2xl font-semibold mb-3">Our Vision</h3>
+          <p class="text-gray-700 mb-4">A Nigeria where every youth is informed, empowered, and resilient against drugs.</p>
+          <button class="text-primary font-semibold hover:underline">Read Full Vision →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Myths vs Facts -->
+  <section id="myths" class="py-20 bg-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold font-serif mb-4">Myths vs Facts</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+        Clearing misconceptions and spreading truth about drug abuse.
+      </p>
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="p-6 border-l-4 border-red-500 bg-red-50 rounded">
+          <h3 class="text-xl font-semibold text-red-700 mb-2">Myth</h3>
+          <p>"Drug use makes you cool and helps you fit in."</p>
+        </div>
+        <div class="p-6 border-l-4 border-green-600 bg-green-50 rounded">
+          <h3 class="text-xl font-semibold text-green-700 mb-2">Fact</h3>
+          <p>Drug use damages health, judgment and relationships.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Stories -->
+  <section class="py-20 bg-secondary">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold font-serif mb-4">Impact Stories</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+        Stories of hope and recovery from across Nigeria.
+      </p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 bg-white rounded-lg shadow text-left">
+          <i class="fas fa-user text-primary text-2xl mb-3"></i>
+          <h3 class="text-lg font-semibold mb-2">Chinedu’s Story</h3>
+          <p class="text-gray-600">“After NHF workshops, I resisted peer pressure and focused on school.”</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow text-left">
+          <i class="fas fa-user text-primary text-2xl mb-3"></i>
+          <h3 class="text-lg font-semibold mb-2">Amina’s Recovery</h3>
+          <p class="text-gray-600">“With NHF’s hotline, I overcame addiction and now volunteer to help others.”</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow text-left">
+          <i class="fas fa-users text-primary text-2xl mb-3"></i>
+          <h3 class="text-lg font-semibold mb-2">Community Change</h3>
+          <p class="text-gray-600">“Our Lagos community saw a 40% drop in drug abuse after NHF programs.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pledge -->
+  <section id="pledge" class="py-20 bg-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold font-serif mb-4">Take the Pledge</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+        Join thousands of Nigerian youths committed to a drug-free lifestyle.
+      </p>
+      <form class="max-w-2xl mx-auto bg-secondary p-8 rounded-lg shadow space-y-6 text-left">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block font-medium mb-2">Full Name</label>
+            <input type="text" class="w-full border rounded-lg px-4 py-2 focus:ring-primary focus:border-primary">
+          </div>
+          <div>
+            <label class="block font-medium mb-2">Age</label>
+            <input type="number" class="w-full border rounded-lg px-4 py-2 focus:ring-primary focus:border-primary">
+          </div>
+        </div>
+        <div>
+          <label class="block font-medium mb-2">Your Pledge</label>
+          <textarea rows="4" class="w-full border rounded-lg px-4 py-2 focus:ring-primary focus:border-primary">I pledge to stay drug-free and inspire others.</textarea>
+        </div>
+        <button type="submit" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-green-700 w-full">
+          Submit My Pledge
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Hotlines -->
+  <section class="py-20 bg-secondary">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold font-serif mb-4">Get Help Now</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+        Support resources and emergency contacts for immediate help.
+      </p>
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
+        <div class="p-6 bg-white border-l-4 border-red-600 rounded">
+          <h3 class="text-lg font-semibold text-red-600 mb-3"><i class="fas fa-phone-alt mr-2"></i> Emergency Hotlines</h3>
+          <p>NDLEA: 0800 1020 3040</p>
+          <p>Mental Health: 0800 2010 2010</p>
+        </div>
+        <div class="p-6 bg-white border-l-4 border-blue-600 rounded">
+          <h3 class="text-lg font-semibold text-blue-600 mb-3"><i class="fas fa-info-circle mr-2"></i> Support Resources</h3>
+          <p>Rehabilitation Centers</p>
+          <p>Support Groups</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="events" class="py-20 bg-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold font-serif mb-4">Upcoming Events</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">Be part of our mission to raise awareness.</p>
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
+        <div class="p-6 bg-secondary rounded-lg shadow">
+          <div class="flex items-start space-x-4">
+            <div class="bg-primary text-white text-center px-3 py-2 rounded">
+              <p class="text-xl font-bold">25</p><p class="text-sm">OCT</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg">Youth Awareness Rally</h4>
+              <p class="text-gray-600">Lagos City Hall, 10:00 AM</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 bg-secondary rounded-lg shadow">
+          <div class="flex items-start space-x-4">
+            <div class="bg-primary text-white text-center px-3 py-2 rounded">
+              <p class="text-xl font-bold">03</p><p class="text-sm">NOV</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg">School Outreach Program</h4>
+              <p class="text-gray-600">Abuja Secondary Schools, 9:00 AM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-gray-300 py-14">
+    <div class="container mx-auto px-6 grid md:grid-cols-4 gap-10">
+      <div>
+        <h3 class="text-lg font-semibold mb-3 text-white">National Health Fellows</h3>
+        <p class="text-sm">Empowering Nigerian youths to lead drug-free lives.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3 text-white">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#home" class="hover:text-white">Home</a></li>
+          <li><a href="#about" class="hover:text-white">About</a></li>
+          <li><a href="#myths" class="hover:text-white">Myths</a></li>
+          <li><a href="#pledge" class="hover:text-white">Pledge</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3 text-white">Contact</h4>
+        <ul class="space-y-2 text-sm">
+          <li><i class="fas fa-map-marker-alt mr-2"></i> Abuja, Nigeria</li>
+          <li><i class="fas fa-phone mr-2"></i> +234 800 123 4567</li>
+          <li><i class="fas fa-envelope mr-2"></i> info@nhf.org</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3 text-white">Follow Us</h4>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 mt-10 pt-6 text-center text-sm">
+      © 2023 National Health Fellows. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

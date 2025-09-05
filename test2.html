@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Say No to Drugs, Say Yes to Life</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2ECC71',
+                        'primary-dark': '#27AE60',
+                        'primary-light': '#A9DFBF',
+                        secondary: '#3498DB',
+                        'secondary-dark': '#2980B9',
+                        'secondary-light': '#AED6F1',
+                        accent: '#E74C3C',
+                        'accent-dark': '#C0392B',
+                        gray: {
+                            100: '#F8F9FA',
+                            200: '#E9ECEF',
+                            300: '#DEE2E6',
+                            400: '#CED4DA',
+                            500: '#ADB5BD',
+                            600: '#6C757D',
+                            700: '#495057',
+                            800: '#343A40',
+                            900: '#212529',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Open Sans', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap');
+        
+        .pre-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .animate-in {
+            opacity: 1;
+            transform: none;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .pledge-scroll {
+            height: 250px;
+            overflow-y: auto;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .quiz-option.correct {
+            border-color: #27AE60;
+            background-color: #A9DFBF;
+        }
+        
+        .quiz-option.incorrect {
+            border-color: #E74C3C;
+            background-color: #FADBD8;
+        }
+        
+        .share-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            bottom: 100%;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            z-index: 10;
+        }
+        
+        .social-share:hover .share-dropdown {
+            display: grid;
+        }
+        
+        .back-to-top {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .gallery-caption {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .progress-bar {
+            width: 30%;
+        }
+        
+        /* Mobile menu animation */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.25s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-btn .close-icon {
+            display: none;
+        }
+        
+        .nav-open .mobile-menu-btn .menu-icon {
+            display: none;
+        }
+        
+        .nav-open .mobile-menu-btn .close-icon {
+            display: block;
+        }
+    </style>
+</head>
+<body class="font-body text-gray-800 bg-white overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="navbar fixed top-0 left-0 w-full bg-white shadow-sm z-50">
+        <div class="container mx-auto px-4 flex items-center justify-between py-4">
+            <a href="#" class="logo flex items-center font-heading font-bold text-xl text-gray-900">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart-handshake" class="lucide lucide-heart-handshake text-primary mr-2"><path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762"></path></svg>
+                <span>National Health Fellows</span>
+            </a>
+            
+            <div class="desktop-nav hidden md:block">
+                <ul class="nav-links flex space-x-6">
+                    <li><a href="#about" class="text-gray-700 font-semibold hover:text-primary transition-colors">About</a></li>
+                    <li><a href="#learn" class="text-gray-700 font-semibold hover:text-primary transition-colors">Learn</a></li>
+                    <li><a href="#interactive" class="text-gray-700 font-semibold hover:text-primary transition-colors">Interactive</a></li>
+                    <li><a href="#help" class="text-gray-700 font-semibold hover:text-primary transition-colors">Get Help</a></li>
+                    <li><a href="#events" class="text-gray-700 font-semibold hover:text-primary transition-colors">Events</a></li>
+                    <li><a href="#media" class="text-gray-700 font-semibold hover:text-primary transition-colors">Media</a></li>
+                </ul>
+            </div>
+            
+            <button class="mobile-menu-btn md:hidden flex items-center justify-center w-10 h-10 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" class="lucide lucide-menu menu-icon"><path d="M4 12h16"></path><path d="M4 18h16"></path><path d="M4 6h16"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x close-icon"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+            </button>
+        </div>
+        
+        <div class="mobile-menu fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white transform md:hidden shadow-md z-40 overflow-y-auto">
+            <ul class="mobile-nav-links py-6 px-4">
+                <li class="mb-4"><a href="#about" class="block text-lg font-semibold text-gray-800 py-3 border-b border-gray-200">About</a></li>
+                <li class="mb-4"><a href="#learn" class="block text-lg font-semibold text-gray-800 py-3 border-b border-gray-200">Learn</a></li>
+                <li class="mb-4"><a href="#interactive" class="block text-lg font-semibold text-gray-800 py-3 border-b border-gray-200">Interactive</a></li>
+                <li class="mb-4"><a href="#help" class="block text-lg font-semibold text-gray-800 py-3 border-b border-gray-200">Get Help</a></li>
+                <li class="mb-4"><a href="#events" class="block text-lg font-semibold text-gray-800 py-3 border-b border-gray-200">Events</a></li>
+                <li class="mb-4"><a href="#media" class="block text-lg font-semibold text-gray-800 py-3 border-b border-gray-200">Media</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero relative min-h-screen bg-cover bg-center flex items-center justify-center text-center py-20 mt-16" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/8942984/pexels-photo-8942984.jpeg');">
+        <div class="container mx-auto px-4">
+            <div class="hero-content max-w-4xl mx-auto text-white">
+                <h1 class="font-heading font-extrabold text-4xl md:text-6xl lg:text-7xl leading-tight mb-5 text-shadow">Say No to Drugs, Say Yes to Life</h1>
+                <p class="text-lg md:text-[22px] mb-9 max-w-2xl mx-auto text-shadow">Empowering Nigerian youths for a brighter, drug-free tomorrow</p>
+                <div class="hero-buttons flex flex-wrap gap-3 justify-center mt-6">
+                    <a href="#learn" class="btn btn-primary bg-primary text-white px-6 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-primary-dark transition-all">Learn the Facts</a>
+                    <a href="#quiz" class="btn btn-secondary bg-secondary text-white px-6 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-secondary-dark transition-all">Take the Quiz</a>
+                    <a href="#pledge" class="btn btn-secondary bg-secondary text-white px-6 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-secondary-dark transition-all">Join the Pledge</a>
+                    <a href="#help" class="btn btn-accent bg-accent text-white px-6 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-accent-dark transition-all">Get Help Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="stats-grid grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="stat-card bg-white rounded-lg p-6 text-center shadow-md hover:-translate-y-1 hover:shadow-lg transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bar-chart-2" class="lucide lucide-bar-chart-2 text-primary text-4xl mb-3 mx-auto"><line x1="18" x2="18" y1="20" y2="10"></line><line x1="12" x2="12" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="14"></line></svg>
+                    <h3 class="font-heading font-bold text-4xl text-gray-900 mb-2">14M</h3>
+                    <p class="text-gray-600 text-lg">Nigerians have used drugs</p>
+                </div>
+                <div class="stat-card bg-white rounded-lg p-6 text-center shadow-md hover:-translate-y-1 hover:shadow-lg transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users text-primary text-4xl mb-3 mx-auto"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                    <h3 class="font-heading font-bold text-4xl text-gray-900 mb-2">15-35</h3>
+                    <p class="text-gray-600 text-lg">Youths most affected</p>
+                </div>
+                <div class="stat-card bg-white rounded-lg p-6 text-center shadow-md hover:-translate-y-1 hover:shadow-lg transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart-pulse" class="lucide lucide-heart-pulse text-primary text-4xl mb-3 mx-auto"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path><path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"></path></svg>
+                    <h3 class="font-heading font-bold text-4xl text-gray-900 mb-2">100%</h3>
+                    <p class="text-gray-600 text-lg">Awareness saves lives</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section py-20">
+        <div class="container mx-auto px-4">
+            <div class="section-header text-center mb-12">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-gray-900 mb-3">About the Campaign</h2>
+                <div class="section-divider w-20 h-1 bg-primary rounded-full mx-auto mb-4"></div>
+            </div>
+            
+            <div class="about-content grid grid-cols-1 md:grid-cols-2 gap-8 px-44 items-center">
+                <div class="about-text">
+                    <p class="text-gray-700 text-[17px] mb-4">The <strong>'Say No, Say Yes'</strong> campaign is an initiative by the National Health Fellows (NHF) in Bakassi, Nigeria, dedicated to combating drug abuse among Nigerian youth through education, awareness, and community engagement.</p>
+                    <p class="text-gray-700 text-[17px] mb-8">Our mission is to empower young Nigerians with knowledge and support systems that enable them to make informed decisions about drugs and substance abuse. By fostering a community that prioritizes health and wellbeing, we aim to create a drug-free future for Nigerian youth.</p>
+                    <a href="#" class="btn btn-outline border-2 border-primary text-primary px-6 py-3 rounded-md font-heading font-semibold hover:bg-primary hover:text-white transition-all">Our Mission &amp; Vision</a>
+                </div>
+                
+                <div class="about-image rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.pexels.com/photos/7551442/pexels-photo-7551442.jpeg" alt="Nigerian youth community engagement" loading="lazy" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learn Section -->
+    <section id="learn" class="learn-section py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="section-header text-center mb-12">
+                <h2 class="font-heading font-bold text-3xl md:text-[38px] text-gray-900 mb-6">Learn &amp; Stay Informed</h2>
+                <div class="section-divider w-20 h-1 bg-primary rounded-full mx-auto mb-4"></div>
+                <p class="text-gray-600 text-[16px] max-w-2xl mx-auto">Knowledge is your first defense against drug abuse. Explore our educational resources.</p>
+            </div>
+            
+            <div class="learn-cards grid grid-cols-1 md:grid-cols-3 gap-6 px-44">
+                <div class="learn-card bg-white rounded-lg p-6 shadow-md hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col">
+                    <div class="card-icon w-14 h-14 bg-primary-light rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-square" class="lucide lucide-check-square text-primary-dark text-2xl"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Myths vs Facts</h3>
+                    <p class="text-gray-700 mb-4 flex-grow">Separate truth from fiction about drug use and its effects on Nigerian youth.</p>
+                    <a href="#" class="btn btn-text text-primary font-semibold relative w-fit after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-2 after:transition-all after:duration-300 hover:after:w-[calc(100%-1rem)]">Read More</a>
+                </div>
+                
+                <div class="learn-card bg-white rounded-lg p-6 shadow-md hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col">
+                    <div class="card-icon w-14 h-14 bg-primary-light rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="book-open" class="lucide lucide-book-open text-primary-dark text-2xl"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Impact Stories</h3>
+                    <p class="text-gray-700 mb-4 flex-grow">Real stories from Nigerian youths about their experiences and recovery journeys.</p>
+                    <a href="#" class="btn btn-text text-primary font-semibold relative w-fit after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-2 after:transition-all after:duration-300 hover:after:w-[calc(100%-1rem)]">Read Stories</a>
+                </div>
+                
+                <div class="learn-card bg-white rounded-lg p-6 shadow-md hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col">
+                    <div class="card-icon w-14 h-14 bg-primary-light rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="file-text" class="lucide lucide-file-text text-primary-dark text-2xl"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-3">Resources &amp; Flyers</h3>
+                    <p class="text-gray-700 mb-4 flex-grow">Educational materials for schools, parents, and community leaders.</p>
+                    <a href="#" class="btn btn-text text-primary font-semibold relative w-fit after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-2 after:transition-all after:duration-300 hover:after:w-[calc(100%-1rem)]">Download</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Section -->
+    <section id="interactive" class="interactive-section py-20">
+        <div class="container mx-auto px-4">
+            <div class="section-header text-center mb-12">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-gray-900 mb-6">Interactive Zone</h2>
+                <div class="section-divider w-20 h-1 bg-primary rounded-full mx-auto mb-4"></div>
+                <p class="text-gray-600 text-[16px] max-w-2xl mx-auto">Engage with our tools to test your knowledge and join our community of change-makers.</p>
+            </div>
+            
+            <div class="interactive-content grid grid-cols-1 lg:grid-cols-2 gap-8 px-44">
+                <!-- Quiz Section -->
+                <div id="quiz" class="quiz-container bg-white rounded-lg p-6 shadow-md">
+                    <h3 class="font-heading font-bold text-2xl text-gray-900 mb-6 text-center">Test Your Knowledge</h3>
+                    <div class="quiz-wrapper bg-gray-100 rounded-lg p-5">
+                        <div id="quiz-questions">
+                            <div class="quiz-start text-center">
+                                <p class="text-[16px] mb-6">Take our 10-question quiz to test your knowledge about drug abuse and prevention.</p>
+                                <button id="start-quiz" class="btn btn-primary bg-primary text-white px-6 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-primary-dark transition-all">Start Quiz</button>
+                            </div>
+                        </div>
+                        <div id="quiz-results" class="hidden">
+                            <h4 class="font-heading font-bold text-xl text-gray-900 mb-4 text-center">Your Score: <span id="score">0</span>/10</h4>
+                            <p id="result-message" class="text-center mb-6 text-lg"></p>
+                            <button id="retake-quiz" class="btn btn-secondary bg-secondary text-white px-6 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-secondary-dark transition-all mx-auto block">Take Again</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pledge Wall -->
+                <div id="pledge" class="pledge-container bg-white rounded-lg p-6 shadow-md">
+                    <h3 class="font-heading font-bold text-2xl text-gray-900 mb-6 text-center">Pledge Wall</h3>
+                    <div class="pledge-wall bg-gray-100 rounded-lg p-4 mb-6">
+                        <div class="pledge-scroll" id="pledge-scroll">
+                            <!-- Pledges will be dynamically inserted here -->
+                            <div class="pledge-item bg-white border-l-4 border-primary rounded-sm p-3 mb-3 shadow-sm">
+                                <p>"I, Blessing from Calabar, I choose a bright future over temporary escape."</p>
+                                <p class="pledge-location text-sm text-gray-600 italic">- Blessing, Calabar</p>
+                            </div>
+                            <div class="pledge-item bg-white border-l-4 border-primary rounded-sm p-3 mb-3 shadow-sm">
+                                <p>"I, Yusuf from Kano, I promise to educate my friends about the dangers of drug abuse."</p>
+                                <p class="pledge-location text-sm text-gray-600 italic">- Yusuf, Kano</p>
+                            </div>
+                            <div class="pledge-item bg-white border-l-4 border-primary rounded-sm p-3 mb-3 shadow-sm">
+                                <p>"I, Ngozi from Port Harcourt, I pledge to help create a drug-free Nigeria."</p>
+                                <p class="pledge-location text-sm text-gray-600 italic">- Ngozi, Port Harcourt</p>
+                            </div>
+                            <div class="pledge-item bg-white border-l-4 border-primary rounded-sm p-3 mb-3 shadow-sm">
+                                <p>"I, Emeka from Abuja, I commit to saying NO to drugs and YES to opportunities."</p>
+                                <p class="pledge-location text-sm text-gray-600 italic">- Emeka, Abuja</p>
+                            </div>
+                            <div class="pledge-item bg-white border-l-4 border-primary rounded-sm p-3 mb-3 shadow-sm">
+                                <p>"I, Amina from Lagos, I choose health, education, and a future without drugs."</p>
+                                <p class="pledge-location text-sm text-gray-600 italic">- Amina, Lagos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pledge-form">
+                        <h4 class="font-heading font-semibold text-xl text-gray-900 mb-4 text-center">Add Your Pledge</h4>
+                        <form id="pledge-form">
+                            <div class="form-group mb-4">
+                                <input type="text" id="pledge-name" placeholder="Your Name" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:border-primary focus:outline-none transition-colors">
+                            </div>
+                            <div class="form-group mb-4">
+                                <input type="text" id="pledge-location" placeholder="Your Community/City" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:border-primary focus:outline-none transition-colors">
+                            </div>
+                            <button type="submit" class="btn btn-primary bg-primary text-white w-full py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-primary-dark transition-all">Make My Pledge</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Help Section -->
+    <section id="help" class="help-section py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="section-header text-center mb-12">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-gray-900 mb-6">Get Help</h2>
+                <div class="section-divider w-20 h-1 bg-primary rounded-full mx-auto mb-4"></div>
+                <p class="text-gray-600 text-[17px] max-w-2xl mx-auto">You are not alone. Reach out for support from these trusted resources.</p>
+            </div>
+            
+            <div class="help-cards grid grid-cols-1 md:grid-cols-3 gap-6 px-44">
+                <div class="help-card bg-white rounded-lg p-6 shadow-md flex flex-col">
+                    <div class="card-icon w-14 h-14 bg-secondary-light rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" class="lucide lucide-phone text-secondary-dark text-2xl"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Emergency Hotlines</h3>
+                    <ul class="mb-4">
+                        <li class="mb-3 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-primary before:font-bold"><strong>NDLEA Hotline:</strong> 0800-1020-3040</li>
+                        <li class="mb-3 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-primary before:font-bold"><strong>Youth Crisis Line:</strong> 0700-6222-5878</li>
+                        <li class="pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-primary before:font-bold"><strong>National Emergency:</strong> 112</li>
+                    </ul>
+                </div>
+                
+                <div class="help-card bg-white rounded-lg p-6 shadow-md flex flex-col">
+                    <div class="card-icon w-14 h-14 bg-secondary-light rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="building" class="lucide lucide-building text-secondary-dark text-2xl"><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M12 6h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M16 6h.01"></path><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Local Support Centers</h3>
+                    <ul class="mb-4">
+                        <li class="mb-3 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-primary before:font-bold">Bakassi Youth Health Center</li>
+                        <li class="mb-3 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-primary before:font-bold">Community Recovery Network</li>
+                        <li class="pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-primary before:font-bold">Nigerian Addiction Treatment Facility</li>
+                    </ul>
+                    <a href="#" class="btn btn-text text-primary font-semibold relative w-fit mt-auto after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-2 after:transition-all after:duration-300 hover:after:w-[calc(100%-1rem)]">View All Centers</a>
+                </div>
+                
+                <div class="help-card bg-white rounded-lg p-6 shadow-md flex flex-col">
+                    <div class="card-icon w-14 h-14 bg-secondary-light rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users text-secondary-dark text-2xl"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-gray-900 mb-4">Peer Support Groups</h3>
+                    <p class="text-gray-700 mb-4">Connect with others who understand what you're going through in our confidential support groups.</p>
+                    <div class="mt-auto">
+                        <a href="#" class="btn btn-secondary bg-secondary text-white px-6 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-secondary-dark transition-all mr-3">Find a Group</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events-section py-20">
+        <div class="container mx-auto px-4">
+            <div class="section-header text-center mb-12">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-gray-900 mb-6">Upcoming Events</h2>
+                <div class="section-divider w-20 h-1 bg-primary rounded-full mx-auto mb-4"></div>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Join us for community events, workshops, and awareness campaigns.</p>
+            </div>
+            
+            <div class="events-tabs mb-10 px-44">
+                <div class="tabs-header flex flex-wrap border-b border-gray-300 mb-6">
+                    <button class="tab-btn active px-6 py-3 font-heading font-semibold text-gray-800 border-b-2 border-primary" data-tab="upcoming">Upcoming Events</button>
+                    <button class="tab-btn px-6 py-3 font-heading font-semibold text-gray-600" data-tab="past">Past Events</button>
+                    <button class="tab-btn px-6 py-3 font-heading font-semibold text-gray-600" data-tab="workshops">Workshops</button>
+                </div>
+                
+                <div class="tabs-content">
+                    <div class="tab-content active" id="upcoming-tab">
+                        <div class="events-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="event-card bg-white rounded-lg overflow-hidden shadow-md hover:-translate-y-1 hover:shadow-lg transition-all">
+                                <div class="event-image h-44 bg-gray-300 relative">
+                                    <img src="https://images.pexels.com/photos/699459/pexels-photo-699459.jpeg" alt="Community awareness walk" loading="lazy" class="w-full h-full object-cover">
+                                    <div class="event-date absolute top-4 left-4 bg-primary text-white text-center px-3 py-2 rounded-md">
+                                        <span class="block font-heading font-bold text-xl">25</span>
+                                        <span class="block text-sm">June</span>
+                                    </div>
+                                </div>
+                                <div class="event-content p-5">
+                                    <h3 class="font-heading font-bold text-[18px] text-gray-900 mb-2">Community Awareness Walk</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Join us for a walk through Bakassi to raise awareness about drug abuse prevention.</p>
+                                    <div class="event-meta flex items-center text-gray-600 text-sm mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin mr-2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                        <span class="text-xs">Bakassi Central Park</span>
+                                    </div>
+                                    <a href="#" class="btn btn-outline border-2 border-primary text-primary px-4 py-2 rounded-md font-heading font-semibold text-[13px] hover:bg-primary hover:text-white transition-all">Register Now</a>
+                                </div>
+                            </div>
+                            
+                            <div class="event-card bg-white rounded-lg overflow-hidden shadow-md hover:-translate-y-1 hover:shadow-lg transition-all">
+                                <div class="event-image h-44 bg-gray-300 relative">
+                                    <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg" alt="Youth empowerment workshop" loading="lazy" class="w-full h-full object-cover">
+                                    <div class="event-date absolute top-4 left-4 bg-primary text-white text-center px-3 py-2 rounded-md">
+                                        <span class="block font-heading font-bold text-xl">03</span>
+                                        <span class="block text-sm">July</span>
+                                    </div>
+                                </div>
+                                <div class="event-content p-5">
+                                    <h3 class="font-heading font-bold text-[18px] text-gray-900 mb-2">Youth Empowerment Workshop</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Learn skills and strategies to resist peer pressure and make healthy choices.</p>
+                                    <div class="event-meta flex items-center text-gray-600 text-sm mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin mr-2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                        <span class="text-xs">Bakassi Community Center</span>
+                                    </div>
+                                    <a href="#" class="btn btn-outline border-2 border-primary text-primary px-4 py-2 rounded-md font-heading font-semibold text-[13px] hover:bg-primary hover:text-white transition-all">Register Now</a>
+                                </div>
+                            </div>
+                            
+                            <div class="event-card bg-white rounded-lg overflow-hidden shadow-md hover:-translate-y-1 hover:shadow-lg transition-all">
+                                <div class="event-image h-44 bg-gray-300 relative">
+                                    <img src="https://images.pexels.com/photos/1181345/pexels-photo-1181345.jpeg" alt="School outreach program" loading="lazy" class="w-full h-full object-cover">
+                                    <div class="event-date absolute top-4 left-4 bg-primary text-white text-center px-3 py-2 rounded-md">
+                                        <span class="block font-heading font-bold text-xl">15</span>
+                                        <span class="block text-sm">July</span>
+                                    </div>
+                                </div>
+                                <div class="event-content p-5">
+                                    <h3 class="font-heading font-bold text-[18px] text-gray-900 mb-2">School Outreach Program</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Interactive sessions with students to educate them about drug abuse prevention.</p>
+                                    <div class="event-meta flex items-center text-gray-600 text-sm mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin mr-2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                        <span class="text-xs">Bakassi Secondary School</span>
+                                    </div>
+                                    <a href="#" class="btn btn-outline border-2 border-primary text-primary px-4 py-2 rounded-md font-heading font-semibold text-[13px] hover:bg-primary hover:text-white transition-all">Volunteer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Section -->
+    <section id="media" class="media-section py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="section-header text-center mb-12">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-gray-900 mb-3">Media Gallery</h2>
+                <div class="section-divider w-20 h-1 bg-primary rounded-full mx-auto mb-4"></div>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">See our campaigns and events in action across Nigerian communities.</p>
+            </div>
+            
+            <div class="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="gallery-item group relative overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://images.pexels.com/photos/6646914/pexels-photo-6646914.jpeg" alt="Awareness campaign" loading="lazy" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="gallery-caption absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 text-white text-center">
+                        <p>Community awareness campaign in Bakassi</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item group relative overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://images.pexels.com/photos/6647030/pexels-photo-6647030.jpeg" alt="School workshop" loading="lazy" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="gallery-caption absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 text-white text-center">
+                        <p>School workshop on drug abuse prevention</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item group relative overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg" alt="Youth engagement" loading="lazy" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="gallery-caption absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 text-white text-center">
+                        <p>Youth engagement session in Lagos</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item group relative overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://images.pexels.com/photos/6646915/pexels-photo-6646915.jpeg" alt="Community outreach" loading="lazy" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="gallery-caption absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 text-white text-center">
+                        <p>Community outreach program in Kano</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="#" class="btn btn-primary bg-primary text-white px-6 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-primary-dark transition-all">View More Media</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section py-16 bg-gradient-to-r from-primary to-green-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="newsletter-content max-w-3xl mx-auto text-center text-white">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl mb-4">Stay Connected</h2>
+                <p class="text-lg mb-8">Subscribe to our newsletter for updates on events, resources, and ways to get involved in the fight against drug abuse.</p>
+                
+                <form class="newsletter-form flex flex-col sm:flex-row gap-3 justify-center">
+                    <input type="email" placeholder="Your email address" required class="px-4 py-3 rounded-md flex-grow max-w-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-white">
+                    <button type="submit" class="btn btn-white bg-white text-primary px-6 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-gray-100 transition-all">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="footer-content grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="footer-about">
+                    <a href="#" class="logo flex items-center font-heading font-bold text-xl mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart-handshake" class="lucide lucide-heart-handshake text-primary mr-2"><path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762"></path></svg>
+                        <span>National Health Fellows</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">Empowering Nigerian youths for a brighter, drug-free tomorrow through education, awareness, and community support.</p>
+                    <div class="social-links flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="facebook" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="twitter" class="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="instagram" class="lucide lucide-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="youtube" class="lucide lucide-youtube"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="font-heading font-bold text-lg mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#learn" class="text-gray-400 hover:text-white transition-colors">Educational Resources</a></li>
+                        <li><a href="#interactive" class="text-gray-400 hover:text-white transition-colors">Interactive Tools</a></li>
+                        <li><a href="#help" class="text-gray-400 hover:text-white transition-colors">Get Help</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white transition-colors">Events</a></li>
+                        <li><a href="#media" class="text-gray-400 hover:text-white transition-colors">Media Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="font-heading font-bold text-lg mb-6">Resources</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Download Flyers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Research Papers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Statistics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="font-heading font-bold text-lg mb-6">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin text-primary mr-3 mt-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span class="text-gray-400">Bakassi Local Government, Cross River State, Nigeria</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" class="lucide lucide-phone text-primary mr-3"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                            <span class="text-gray-400">+234 801 234 5678</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" class="lucide lucide-mail text-primary mr-3"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <span class="text-gray-400">info@nationalhealthfellows.org</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 National Health Fellows. All rights reserved. | <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a> | <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-md flex items-center justify-center z-30">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-up" class="lucide lucide-chevron-up"><path d="m18 15-6-6-6 6"></path></svg>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const body = document.body;
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            body.classList.toggle('nav-open');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Tab Functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Update active tab button
+                tabBtns.forEach(b => b.classList.remove('active', 'border-primary', 'text-gray-800'));
+                tabBtns.forEach(b => b.classList.add('text-gray-600'));
+                btn.classList.add('active', 'border-primary', 'text-gray-800');
+                btn.classList.remove('text-gray-600');
+                
+                // Update active tab content
+                tabContents.forEach(content => content.classList.remove('active'));
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Pledge Form
+        const pledgeForm = document.getElementById('pledge-form');
+        const pledgeScroll = document.getElementById('pledge-scroll');
+        
+        pledgeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('pledge-name').value;
+            const location = document.getElementById('pledge-location').value;
+            
+            if (name && location) {
+                const pledgeItem = document.createElement('div');
+                pledgeItem.className = 'pledge-item bg-white border-l-4 border-primary rounded-sm p-3 mb-3 shadow-sm';
+                pledgeItem.innerHTML = `
+                    <p>"I, ${name} from ${location}, I choose a drug-free life and a brighter future for myself and my community."</p>
+                    <p class="pledge-location text-sm text-gray-600 italic">- ${name}, ${location}</p>
+                `;
+                
+                pledgeScroll.insertBefore(pledgeItem, pledgeScroll.firstChild);
+                
+                // Clear form
+                pledgeForm.reset();
+                
+                // Show success message
+                alert('Thank you for taking the pledge! Your commitment inspires others.');
+            }
+        });
+        
+        // Back to Top Button
+        const backToTopBtn = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Quiz Functionality
+        const quizQuestions = [
+            {
+                question: "Which of these is NOT a common reason Nigerian youths start using drugs?",
+                options: ["Peer pressure", "Academic stress", "Family support", "Curiosity"],
+                answer: 2
+            },
+            {
+                question: "What percentage of Nigerian youths aged 15-35 have used drugs?",
+                options: ["14%", "25%", "40%", "60%"],
+                answer: 0
+            },
+            {
+                question: "Which drug is most commonly abused in Nigeria?",
+                options: ["Cannabis", "Cocaine", "Tramadol", "Codeine"],
+                answer: 0
+            },
+            {
+                question: "What is the first step to helping a friend with drug addiction?",
+                options: ["Report them to authorities", "Educate yourself about addiction", "Confront them aggressively", "Ignore the problem"],
+                answer: 1
+            },
+            {
+                question: "Which of these is a long-term effect of drug abuse?",
+                options: ["Improved memory", "Financial stability", "Mental health disorders", "Stronger immune system"],
+                answer: 2
+            }
+        ];
+        
+        const quizContainer = document.getElementById('quiz-questions');
+        const quizResults = document.getElementById('quiz-results');
+        const scoreElement = document.getElementById('score');
+        const resultMessage = document.getElementById('result-message');
+        const startQuizBtn = document.getElementById('start-quiz');
+        const retakeQuizBtn = document.getElementById('retake-quiz');
+        
+        let currentQuestion = 0;
+        let score = 0;
+        
+        startQuizBtn.addEventListener('click', startQuiz);
+        retakeQuizBtn.addEventListener('click', startQuiz);
+        
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            quizResults.classList.add('hidden');
+            quizContainer.innerHTML = '';
+            showQuestion();
+        }
+        
+        function showQuestion() {
+            if (currentQuestion >= quizQuestions.length) {
+                showResults();
+                return;
+            }
+            
+            const question = quizQuestions[currentQuestion];
+            const questionHTML = `
+                <div class="quiz-question">
+                    <h4 class="font-heading font-semibold text-lg mb-4">Question ${currentQuestion + 1}/${quizQuestions.length}</h4>
+                    <p class="question-text font-medium text-lg mb-6">${question.question}</p>
+                    <div class="quiz-options space-y-3">
+                        ${question.options.map((option, index) => `
+                            <div class="quiz-option bg-white border-2 border-gray-300 rounded-md p-4 cursor-pointer transition-colors" data-index="${index}">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            quizContainer.innerHTML = questionHTML;
+            
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    const selectedIndex = parseInt(option.getAttribute('data-index'));
+                    checkAnswer(selectedIndex);
+                });
+            });
+        }
+        
+        function checkAnswer(selectedIndex) {
+            const correctIndex = quizQuestions[currentQuestion].answer;
+            const options = document.querySelectorAll('.quiz-option');
+            
+            if (selectedIndex === correctIndex) {
+                options[selectedIndex].classList.add('correct');
+                score++;
+            } else {
+                options[selectedIndex].classList.add('incorrect');
+                options[correctIndex].classList.add('correct');
+            }
+            
+            setTimeout(() => {
+                currentQuestion++;
+                showQuestion();
+            }, 1500);
+        }
+        
+        function showResults() {
+            quizContainer.innerHTML = '';
+            quizResults.classList.remove('hidden');
+            scoreElement.textContent = score;
+            
+            if (score === quizQuestions.length) {
+                resultMessage.textContent = 'Excellent! You have great knowledge about drug abuse prevention.';
+            } else if (score >= quizQuestions.length / 2) {
+                resultMessage.textContent = 'Good job! You know quite a bit, but there\'s more to learn.';
+            } else {
+                resultMessage.textContent = 'Thanks for taking the quiz! Consider exploring our educational resources to learn more.';
+            }
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    body.classList.remove('nav-open');
+                    mobileMenu.classList.remove('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.pre-animation').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
