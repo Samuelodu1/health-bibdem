@@ -1,0 +1,24 @@
+/* Hide Google Translate UI completely */
+.goog-te-banner-frame, .goog-te-gadget, .goog-logo-link,
+#goog-gt-tt, .goog-te-balloon-frame, .goog-te-banner, .skiptranslate {
+    display:none!important;
+}
+body { top:0!important; }
+
+/* Dropdown */
+.dropdown {position:relative; display:inline-block;}
+.dropdown-btn {
+    padding:3px; border:1px solid #ccc; border-radius:4px; cursor:pointer;
+    background:#fff; display:flex; align-items:center; justify-content:center;
+}
+.dropdown-btn img {width:24px; display:block;}
+.dropdown-content {
+    display:none; position:absolute; right:0; background:#fff; border:1px solid #ccc;
+    border-radius:4px; margin-top:4px; min-width:90px; z-index:999;
+}
+.dropdown-content div {
+    padding:4px 8px; display:flex; align-items:center; gap:4px; cursor:pointer;
+}
+.dropdown-content div:hover {background:#f0f0f0;}
+.dropdown-content img {width:18px;}
+.show .dropdown-content {display:block;}

@@ -3,68 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bilingual Website (English & Yoruba)</title>
+  <title>Bilingual Website</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
+    body { font-family: Arial, sans-serif; text-align:center; padding:40px; }
+    /* Hide Google Translate UI completely */
+    .goog-te-banner-frame, .goog-te-gadget, .goog-logo-link,
+    #goog-gt-tt, .goog-te-balloon-frame, .goog-te-banner, .skiptranslate {
+      display:none!important;
     }
+    body { top:0!important; }
 
-    /* Hide Google’s default dropdown */
-    #google_translate_element {
-      display: none;
+    /* Dropdown */
+    .dropdown {position:relative; display:inline-block;}
+    .dropdown-btn {
+      padding:6px; border:1px solid #ccc; border-radius:6px; cursor:pointer;
+      background:#fff; display:flex; align-items:center; justify-content:center;
     }
-
-    .lang-btn {
-      margin: 10px;
-      padding: 10px 20px;
-      border: none;
-      background: #007bff;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
+    .dropdown-btn img {width:20px; display:block;}
+    .dropdown-content {
+      display:none; position:absolute; background:#fff; border:1px solid #ccc;
+      border-radius:6px; margin-top:4px; min-width:140px; z-index:999;
     }
-    .lang-btn:hover {
-      background: #0056b3;
+    .dropdown-content div {
+      padding:6px 10px; display:flex; align-items:center; gap:6px; cursor:pointer;
     }
+    .dropdown-content div:hover {background:#f0f0f0;}
+    .dropdown-content img {width:18px;}
+    .show .dropdown-content {display:block;}
   </style>
 </head>
 <body>
-  <!-- Our custom language buttons -->
-  <div>
-    <button class="lang-btn" onclick="translateLanguage('en')">English</button>
-    <button class="lang-btn" onclick="translateLanguage('yo')">Yoruba</button>
+  <div class="dropdown" id="langDropdown">
+    <!-- button only shows flag -->
+    <div class="dropdown-btn"><img src="https://flagcdn.com/gb.svg" id="currentFlag"></div>
+    <!-- options show flag + name -->
+    <div class="dropdown-content">
+      <div onclick="setLang('en','English','https://flagcdn.com/gb.svg')"><img src="https://flagcdn.com/gb.svg"> English</div>
+      <div onclick="setLang('yo','Yoruba','https://flagcdn.com/ng.svg')"><img src="https://flagcdn.com/ng.svg"> Yoruba</div>
+      <div onclick="setLang('ig','Igbo','https://flagcdn.com/ng.svg')"><img src="https://flagcdn.com/ng.svg"> Igbo</div>
+      <div onclick="setLang('ha','Hausa','https://flagcdn.com/ng.svg')"><img src="https://flagcdn.com/ng.svg"> Hausa</div>
+    </div>
   </div>
-
+  <p class="notranslate">Welcome to our website</p>
   <h1>Welcome to our website</h1>
   <p>We provide modern web solutions for your business.</p>
 
-  <!-- Hidden Google Translate Widget -->
-  <div id="google_translate_element"></div>
+  <div id="google_translate_element" style="display:none;"></div>
 
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
+  <script>
+    function googleTranslateElementInit(){
       new google.translate.TranslateElement(
-        {
-          pageLanguage: 'en',
-          includedLanguages: 'en,yo'
-        }, 
-        'google_translate_element'
+        {pageLanguage:"en",includedLanguages:"en,yo",autoDisplay:false},
+        "google_translate_element"
       );
     }
 
-    // Custom function to trigger translation
-    function translateLanguage(lang) {
-      const selectField = document.querySelector("select.goog-te-combo");
-      if (selectField) {
-        selectField.value = lang;
-        selectField.dispatchEvent(new Event("change"));
-      }
+    function setLang(code,name,flag){
+      let s=document.querySelector("select.goog-te-combo");
+      if(s){s.value=code;s.dispatchEvent(new Event("change"));}
+      // Only update the flag in the button
+      document.getElementById("currentFlag").src = flag;
+      document.getElementById("langDropdown").classList.remove("show");
+    }
+
+    document.querySelector(".dropdown-btn").onclick=()=>document.getElementById("langDropdown").classList.toggle("show");
+    window.onclick=e=>{
+      if(!e.target.closest(".dropdown")) document.getElementById("langDropdown").classList.remove("show");
     }
   </script>
-
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

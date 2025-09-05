@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Say No to Drugs, Say Yes to Life</title>
+    <link rel="stylesheet" href="css/translate.css">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -61,11 +62,7 @@
             opacity: 1;
             transform: none;
         }
-        
-        .hidden {
-            display: none !important;
-        }
-        
+
         .pledge-scroll {
             height: 250px;
             overflow-y: auto;
@@ -161,7 +158,7 @@
         <div class="container mx-auto px-6 flex items-center justify-between py-4">
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 md:w-10 md:h-10 text-xs md:text-sm rounded-full bg-primary flex items-center justify-center text-white font-bold">NHF</div>
-                <span class="text-[15px] md:text-xl font-bold text-primary">National Health Fellows</span>
+                <span class="notranslate text-[13px] md:text-xl font-bold text-primary">National Health Fellows</span>
             </div>
             
             <div class="desktop-nav hidden md:block">
@@ -175,6 +172,18 @@
                 </ul>
             </div>
             
+            <div class="dropdown" id="langDropdown">
+              <!-- button only shows flag -->
+              <div class="dropdown-btn"><img src="https://flagcdn.com/gb.svg" id="currentFlag"></div>
+              <!-- options show flag + name -->
+              <div class="dropdown-content">
+                <div class="text-xs" onclick="setLang('en','English','https://flagcdn.com/gb.svg')"><img src="https://flagcdn.com/gb.svg"> English</div>
+                <div class="text-xs" onclick="setLang('yo','Yoruba','https://flagcdn.com/ng.svg')"><img src="https://flagcdn.com/ng.svg"> Yoruba</div>
+                <div class="text-xs" onclick="setLang('ig','Igbo','https://flagcdn.com/ng.svg')"><img src="https://flagcdn.com/ng.svg"> Igbo</div>
+                <div class="text-xs" onclick="setLang('ha','Hausa','https://flagcdn.com/ng.svg')"><img src="https://flagcdn.com/ng.svg"> Hausa</div>
+              </div>
+            </div>
+
             <button class="mobile-menu-btn md:hidden flex items-center justify-center w-10 h-10 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" class="lucide lucide-menu menu-icon"><path d="M4 12h16"></path><path d="M4 18h16"></path><path d="M4 6h16"></path></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x close-icon"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
@@ -566,7 +575,7 @@
         <div class="container mx-auto px-4">
             <div class="footer-content grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="footer-about">
-                    <a href="#" class="logo flex items-center font-heading font-bold text-xl mb-6">
+                    <a href="#" class="notranslate logo flex items-center font-heading font-bold text-xl mb-6">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart-handshake" class="lucide lucide-heart-handshake text-primary mr-2"><path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762"></path></svg>
                         <span>National Health Fellows</span>
                     </a>
@@ -630,7 +639,7 @@
                 </div>
             </div>
             
-            <div class="footer-bottom border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-xs md:text-sm">
+            <div class="notranslate footer-bottom border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-xs md:text-sm">
                 <p>&copy; 2025 National Health Fellows. All rights reserved. | <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a> | <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></p>
             </div>
         </div>
@@ -640,6 +649,9 @@
     <button class="back-to-top fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-md flex items-center justify-center z-30">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-up" class="lucide lucide-chevron-up"><path d="m18 15-6-6-6 6"></path></svg>
     </button>
+
+    <!-- Google Translate -->
+    <div id="google_translate_element" style="display:none;"></div>
 
     <script>
         // Mobile Menu Toggle
@@ -872,5 +884,7 @@
             observer.observe(el);
         });
     </script>
+    <script src="js/translate.js"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
