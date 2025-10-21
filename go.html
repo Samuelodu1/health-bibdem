@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Implementation</title>
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 5% auto;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007E4F;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6c757d;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: #343a40;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007E4F;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #2ECC71;
+        }
+
+        .mission-content, .vision-content {
+            line-height: 1.6;
+            color: #495057;
+        }
+
+        /* Myths vs Facts Table */
+        .myths-facts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .myths-facts-table th {
+            background-color: #007E4F;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .myths-facts-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .myths-facts-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .myth-cell {
+            color: #c0392b;
+            font-weight: 600;
+        }
+
+        .fact-cell {
+            color: #27AE60;
+            font-weight: 600;
+        }
+
+        /* Impact Stories */
+        .story-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498DB;
+        }
+
+        .story-title {
+            font-weight: bold;
+            color: #007E4F;
+            margin-bottom: 10px;
+        }
+
+        .story-content {
+            line-height: 1.6;
+            color: #495057;
+            font-style: italic;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007E4F;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: #27AE60;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .myths-facts-table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Buttons to trigger modals -->
+    <button class="btn" onclick="openModal('missionModal')">Our Mission & Vision</button>
+    <button class="btn" onclick="openModal('mythsModal')">Myths vs Facts</button>
+    <button class="btn" onclick="openModal('storiesModal')">Impact Stories</button>
+
+    <!-- Mission & Vision Modal -->
+    <div id="missionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Mission & Vision</h2>
+                <button class="close-btn" onclick="closeModal('missionModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="two-column">
+                    <div class="column">
+                        <h3 class="section-title">Mission Statement</h3>
+                        <div class="mission-content">
+                            Our mission is to empower Nigerian youths to say NO to drug abuse through education, awareness, and collective action. We are building safe spaces where young people can access resources, pledge to live drug-free, and inspire others to do the same. By combining technology, advocacy, and storytelling, we aim to create a national movement that saves lives and strengthens communities.
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3 class="section-title">Vision Statement</h3>
+                        <div class="vision-content">
+                            We envision a drug-free Nigeria where young people are healthy, creative, and focused on achieving their dreams. A future where schools, families, and communities work hand-in-hand to eliminate drug abuse, and where the youth lead the charge in building a society of hope, productivity, and peace.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Myths vs Facts Modal -->
+    <div id="mythsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Myths vs Facts</h2>
+                <button class="close-btn" onclick="closeModal('mythsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table class="myths-facts-table">
+                    <thead>
+                        <tr>
+                            <th>Myth</th>
+                            <th>Fact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="myth-cell">"Weed is natural, so it's safe."</td>
+                            <td class="fact-cell">Natural doesn't always mean safe. Cannabis affects memory, motivation, and can trigger mental illness.</td>
+                        </tr>
+                        <tr>
+                            <td class="myth-cell">"Drugs help me focus on my studies."</td>
+                            <td class="fact-cell">Stimulants like tramadol or codeine damage the brain, harm organs, and create addiction that destroys careers.</td>
+                        </tr>
+                        <tr>
+                            <td class="myth-cell">"Only jobless people take drugs."</td>
+                            <td class="fact-cell">Drug abuse affects all classes: students, workers, celebrities, and even professionals.</td>
+                        </tr>
+                        <tr>
+                            <td class="myth-cell">"One try won't hurt."</td>
+                            <td class="fact-cell">Many addictions start with "just one try." Curiosity is a trap that often leads to dependence.</td>
+                        </tr>
+                        <tr>
+                            <td class="myth-cell">"Drugs make you popular with friends."</td>
+                            <td class="fact-cell">Real friends don't push you toward destruction. Drugs isolate you from family, opportunities, and true friendship.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Impact Stories Modal -->
+    <div id="storiesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Impact Stories</h2>
+                <button class="close-btn" onclick="closeModal('storiesModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="story-card">
+                    <div class="story-title">Story 1 – Effiom, 19 (Student)</div>
+                    <div class="story-content">
+                        "I started using codeine during exam periods because my friends said it would help me stay awake. Before long, I needed it every day just to feel normal. I failed two courses and almost dropped out. With help, I turned my life around. Now, I share my story to warn others: drugs don't make you stronger, they make you weaker."
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-title">Story 2 – Imaobong, 23 (NYSC Corps Member)</div>
+                    <div class="story-content">
+                        "My cousin Okon was only 21 when he overdosed on tramadol. He was intelligent, ambitious, and loved by everyone. His death shattered our family and community. This campaign matters to me because it saves lives like Okon's. If we can prevent even one person from going down that road, it's worth it."
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-title">Story 3 – Anonymous (Recovered Addict)</div>
+                    <div class="story-content">
+                        "I lost three years of my life to drugs. I thought I was just having fun, but I ended up homeless, jobless, and broken. Rehab gave me a second chance. I want Nigerian youths to know: it's easier to say NO today than to fight for your life tomorrow."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target === modals[i]) {
+                    modals[i].style.display = 'none';
+                }
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.getElementsByClassName('modal');
+                for (let i = 0; i < modals.length; i++) {
+                    modals[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

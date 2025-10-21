@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Say No to Drugs, Say Yes to Life</title>
     <link rel="stylesheet" href="css/translate.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/styles.css">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- AOS Animation -->
@@ -86,123 +88,17 @@
             }
         }
     </script>
-    <style type="text/css">
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap');
-
-        .pre-animation {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .animate-in {
-            opacity: 1;
-            transform: none;
-        }
-
-        .pledge-scroll {
-            height: 250px;
-            overflow-y: auto;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .quiz-option.correct {
-        border-color: #27AE60;
-        background-color: #A9DFBF;
-        }
-
-        .quiz-option.incorrect {
-        border-color: #E74C3C;
-        background-color: #FADBD8;
-        }
-
-        .quiz-progress {
-        width: 100%;
-        }
-
-        .share-dropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            bottom: 100%;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-            z-index: 10;
-        }
-
-        .social-share:hover .share-dropdown {
-            display: grid;
-        }
-
-        .back-to-top {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .gallery-caption {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-        }
-
-        .gallery-item:hover .gallery-caption {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .progress-bar {
-            width: 30%;
-        }
-
-        /* Mobile menu animation */
-        .mobile-menu {
-            transform: translateX(-100%);
-            transition: transform 0.25s ease;
-        }
-
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-
-        .mobile-menu-btn .close-icon {
-            display: none;
-        }
-
-        .nav-open .mobile-menu-btn .menu-icon {
-            display: none;
-        }
-
-        .nav-open .mobile-menu-btn .close-icon {
-            display: block;
-        }
-    </style>
 </head>
 
 <body class="font-body text-gray-800 bg-white overflow-x-hidden">
     <!-- Navigation -->
     <nav class="navbar fixed top-0 left-0 w-full bg-white shadow-sm z-50">
-        <div class="container mx-auto px-6 flex items-center justify-between py-4">
+        <div class="container mx-auto px-5 flex items-center justify-between py-3">
             <div class="flex items-center space-x-3">
-                <div
-                    class="w-8 h-8 md:w-10 md:h-10 text-xs md:text-sm rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    NHF</div>
-                <span class="notranslate text-[13px] md:text-xl font-bold text-primary">National Health Fellows</span>
+                <div class="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-gray-200">
+                    <img src="images/logo.png" alt="Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="notranslate text-[14px] md:text-xl font-bold text-primary">Say No Say Yes</span>
             </div>
 
             <div class="desktop-nav hidden md:block">
@@ -374,8 +270,8 @@
                         with knowledge and support systems that enable them to make informed decisions about drugs and
                         substance abuse. By fostering a community that prioritizes health and wellbeing, we aim to
                         create a drug-free future for Nigerian youth.</p>
-                    <a href="#" class="text-sm btn btn-outline border-2 border-primary-light text-primary-light px-6 py-4 rounded-md font-heading font-semibold hover:bg-primary-light hover:text-white transition-all">Our
-                        Mission &amp; Vision</a>
+                    <button onclick="openModal('missionModal')" class="text-sm btn btn-outline border-2 border-primary-light text-primary-light px-6 py-4 rounded-md font-heading font-semibold hover:bg-primary-light hover:text-white transition-all">Our
+                        Mission &amp; Vision</button>
                 </div>
 
                 <div class="about-image rounded-xl overflow-hidden shadow-lg" data-aos="flip-down">
@@ -412,9 +308,8 @@
                     <h3 class="font-heading font-bold text-xl text-gray-900 mb-2">Myths vs Facts</h3>
                     <p class="text-gray-700 mb-4 flex-grow text-[14px] md:text-base">Separate truth from fiction about
                         drug use and its effects on Nigerian youth.</p>
-                    <a href="#"
-                        class="btn btn-text text-primary-light font-semibold relative w-fit after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-2 after:transition-all after:duration-300 hover:after:w-[calc(100%-1rem)]">Read
-                        More</a>
+                    <button onclick="openModal('mythsModal')" class="btn btn-text text-primary-light font-semibold relative w-fit after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-2 after:transition-all after:duration-300 hover:after:w-[calc(100%-1rem)]">Read
+                        More</button>
                 </div>
 
                 <div
@@ -433,9 +328,8 @@
                     <h3 class="font-heading font-bold text-xl text-gray-900 mb-2">Impact Stories</h3>
                     <p class="text-gray-700 mb-4 flex-grow text-[14px] md:text-base">Real stories from Nigerian youths
                         about their experiences and recovery journeys.</p>
-                    <a href="#"
-                        class="btn btn-text text-primary-light font-semibold relative w-fit after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-2 after:transition-all after:duration-300 hover:after:w-[calc(100%-1rem)]">Read
-                        Stories</a>
+                    <button onclick="openModal('storiesModal')" class="btn btn-text text-primary-light font-semibold relative w-fit after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:bottom-0 after:left-2 after:transition-all after:duration-300 hover:after:w-[calc(100%-1rem)]">Read
+                        Stories</button>
                 </div>
 
                 <div
@@ -632,8 +526,7 @@
                     <p class="text-gray-700 mb-4 text-[13px] md:text-sm">Connect with others who understand what you're
                         going through in our confidential support groups.</p>
                     <div class="mt-auto">
-                        <a href="#"
-                            class="text-[14px] md:text-sm btn btn-secondary bg-primary-light text-white px-5 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-secondary-dark transition-all mr-3">Find
+                        <a href="https://chat.whatsapp.com/CIZsRXTpAXS7va2pDIPxKW?mode=wwt" class="text-[14px] md:text-sm btn btn-secondary bg-primary-light text-white px-5 py-3 rounded-md font-heading font-semibold shadow-sm hover:bg-secondary-dark transition-all mr-3">Find
                             a Group</a>
                     </div>
                 </div>
@@ -889,20 +782,116 @@
         </div>
     </section>
 
+    <!-- Mission & Vision Modal -->
+    <div id="missionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Mission & Vision</h2>
+                <button class="close-btn" onclick="closeModal('missionModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="two-column">
+                    <div class="column">
+                        <h3 class="section-title text-sm md:text-base">Mission Statement</h3>
+                        <div class="mission-content text-xs md:text-sm">
+                            Our mission is to empower Nigerian youths to say NO to drug abuse through education, awareness, and collective action. We are building safe spaces where young people can access resources, pledge to live drug-free, and inspire others to do the same. By combining technology, advocacy, and storytelling, we aim to create a national movement that saves lives and strengthens communities.
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3 class="section-title text-sm md:text-base">Vision Statement</h3>
+                        <div class="vision-content text-xs md:text-sm">
+                            We envision a drug-free Nigeria where young people are healthy, creative, and focused on achieving their dreams. A future where schools, families, and communities work hand-in-hand to eliminate drug abuse, and where the youth lead the charge in building a society of hope, productivity, and peace.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Myths vs Facts Modal -->
+    <div id="mythsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Myths vs Facts</h2>
+                <button class="close-btn" onclick="closeModal('mythsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table class="myths-facts-table">
+                    <thead>
+                        <tr>
+                            <th>Myth</th>
+                            <th>Fact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="myth-cell text-xs md:text-sm">"Weed is natural, so it's safe."</td>
+                            <td class="text-gray-800 text-xs md:text-sm">Natural doesn't always mean safe. Cannabis affects memory, motivation, and can trigger mental illness.</td>
+                        </tr>
+                        <tr>
+                            <td class="myth-cell text-xs md:text-sm">"Drugs help me focus on my studies."</td>
+                            <td class="text-gray-800 text-xs md:text-sm">Stimulants like tramadol or codeine damage the brain, harm organs, and create addiction that destroys careers.</td>
+                        </tr>
+                        <tr>
+                            <td class="myth-cell text-xs md:text-sm">"Only jobless people take drugs."</td>
+                            <td class="text-gray-800 text-xs md:text-sm">Drug abuse affects all classes: students, workers, celebrities, and even professionals.</td>
+                        </tr>
+                        <tr>
+                            <td class="myth-cell text-xs md:text-sm">"One try won't hurt."</td>
+                            <td class="text-gray-800 text-xs md:text-sm">Many addictions start with "just one try." Curiosity is a trap that often leads to dependence.</td>
+                        </tr>
+                        <tr>
+                            <td class="myth-cell text-xs md:text-sm">"Drugs make you popular with friends."</td>
+                            <td class="text-gray-800 text-xs md:text-sm">Real friends don't push you toward destruction. Drugs isolate you from family, opportunities, and true friendship.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Impact Stories Modal -->
+    <div id="storiesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Impact Stories</h2>
+                <button class="close-btn" onclick="closeModal('storiesModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="story-card">
+                    <div class="story-title text-xs md:text-sm">Story 1 – Effiom, 19 (Student)</div>
+                    <div class="story-content text-xs md:text-sm">
+                        "I started using codeine during exam periods because my friends said it would help me stay awake. Before long, I needed it every day just to feel normal. I failed two courses and almost dropped out. With help, I turned my life around. Now, I share my story to warn others: drugs don't make you stronger, they make you weaker."
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-title text-xs md:text-sm">Story 2 – Imaobong, 23 (NYSC Corps Member)</div>
+                    <div class="story-content text-xs md:text-sm">
+                        "My cousin Okon was only 21 when he overdosed on tramadol. He was intelligent, ambitious, and loved by everyone. His death shattered our family and community. This campaign matters to me because it saves lives like Okon's. If we can prevent even one person from going down that road, it's worth it."
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-title text-xs md:text-sm">Story 3 – Anonymous (Recovered Addict)</div>
+                    <div class="story-content text-xs md:text-sm">
+                        "I lost three years of my life to drugs. I thought I was just having fun, but I ended up homeless, jobless, and broken. Rehab gave me a second chance. I want Nigerian youths to know: it's easier to say NO today than to fight for your life tomorrow."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="footer-content grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="footer-about">
                     <a href="#" class="notranslate logo flex items-center font-heading font-bold text-xl mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            data-lucide="heart-handshake" class="lucide lucide-heart-handshake text-primary mr-2">
-                            <path
-                                d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762">
-                            </path>
-                        </svg>
-                        <span>National Health Fellows</span>
+                        <div class="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center bg-gray-200">
+                            <img src="images/logo.png" alt="Logo" class="w-full h-full object-cover">
+                        </div>
+                        <span class="ml-2">Say No Say Yes</span>
                     </a>
                     <p class="text-gray-400 text-[14px] md:text-[15px] mb-6">Empowering Nigerian youths for a brighter,
                         drug-free tomorrow through education, awareness, and community support.</p>
@@ -1019,7 +1008,7 @@
 
             <div
                 class="notranslate footer-bottom border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-xs md:text-sm">
-                <p>&copy; 2025 National Health Fellows. All rights reserved. | <a href="#"
+                <p>&copy; 2025 Say No Say Yes. All rights reserved. | <a href="#"
                         class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a> | <a href="#"
                         class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></p>
             </div>
@@ -1166,6 +1155,7 @@
     </script>
     <script src="js/quiz.js"></script>
     <script src="js/translate.js"></script>
+    <script src="js/modal.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 

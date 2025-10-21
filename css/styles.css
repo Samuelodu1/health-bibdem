@@ -1,0 +1,104 @@
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap');
+
+        .pre-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .animate-in {
+            opacity: 1;
+            transform: none;
+        }
+
+        .pledge-scroll {
+            height: 250px;
+            overflow-y: auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .quiz-option.correct {
+        border-color: #27AE60;
+        background-color: #A9DFBF;
+        }
+
+        .quiz-option.incorrect {
+        border-color: #E74C3C;
+        background-color: #FADBD8;
+        }
+
+        .quiz-progress {
+        width: 100%;
+        }
+
+        .share-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            bottom: 100%;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            z-index: 10;
+        }
+
+        .social-share:hover .share-dropdown {
+            display: grid;
+        }
+
+        .back-to-top {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .gallery-caption {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .progress-bar {
+            width: 30%;
+        }
+
+        /* Mobile menu animation */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.25s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-btn .close-icon {
+            display: none;
+        }
+
+        .nav-open .mobile-menu-btn .menu-icon {
+            display: none;
+        }
+
+        .nav-open .mobile-menu-btn .close-icon {
+            display: block;
+        }

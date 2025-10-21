@@ -1,0 +1,155 @@
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 5% auto;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007E4F;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6c757d;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: #343a40;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007E4F;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #2ECC71;
+        }
+
+        .mission-content, .vision-content {
+            line-height: 1.6;
+            color: #495057;
+        }
+
+        /* Myths vs Facts Table */
+        .myths-facts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .myths-facts-table th {
+            background-color: #007E4F;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .myths-facts-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .myths-facts-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .myth-cell {
+            color: #c0392b;
+            font-weight: 600;
+        }
+
+        .fact-cell {
+            color: #27AE60;
+            font-weight: 600;
+        }
+
+        /* Impact Stories */
+        .story-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498DB;
+        }
+
+        .story-title {
+            font-weight: bold;
+            color: #007E4F;
+            margin-bottom: 10px;
+        }
+
+        .story-content {
+            line-height: 1.6;
+            color: #495057;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .myths-facts-table {
+                font-size: 14px;
+            }
+        }
